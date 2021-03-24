@@ -1,16 +1,22 @@
-  let playerScore = 0;
-  let computerScore = 0;
-  function playRound(playerSelection, computerSelection) {
-    function computerPlay(choices =["rock", "paper", "scissors"]) {
-      const randomIndex = Math.floor(Math.random() * choices.length);
-      const randomReturn = choices[randomIndex];
-      return randomReturn;
-    }
-    computerPlay();
-    computerSelection = computerPlay();
+let playerScore = 0;
+let computerScore = 0;
+let playerSelection;
 
-    playerSelection = prompt("do you choose rock, paper, or scissors?");
-    if (playerSelection.toLowerCase() === "rock") {
+function computerPlay(choices =["rock", "paper", "scissors"]) {
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  const randomReturn = choices[randomIndex];
+  return randomReturn;
+}
+
+let computerSelection = computerPlay();
+
+function playRound(playerSelection, computerSelection) {
+  computerSelection = computerPlay();
+  console.log(computerSelection);
+  console.log(playerScore);
+  console.log(computerScore);
+
+  if (playerSelection.toLowerCase() === "rock") {
       if (computerSelection === "paper") {
         let resultText = "You Lose! " + computerSelection + " beats " + playerSelection;
         computerScore++;
@@ -23,6 +29,7 @@
           let resultText = "It's a draw! " + playerSelection + " and " + computerSelection;
           console.log(resultText);
         }
+
     } else if (playerSelection.toLowerCase() === "paper") {
         if (computerSelection === "scissors") {
           let resultText = "You Lose! " + computerSelection + " beats " + playerSelection;
@@ -36,6 +43,7 @@
           let resultText = "It's a draw! " + playerSelection + " and " + computerSelection;
           return resultText;
       }
+
      } else if (playerSelection.toLowerCase() === "scissors") {
         if (computerSelection === "rock") {
           let resultText = "You Lose! " + computerSelection + " beats " + playerSelection;
@@ -49,6 +57,7 @@
           let resultText = "it's a draw! " + playerSelection + " and " + computerSelection;
           console.log(resultText);
        }
+
       } else {
           let resultText = "Try again!";
           console.log(resultText);
@@ -63,9 +72,21 @@
       console.log("It's a tie!");
     }
   }
+
   function game() {
     playRound();
-    
     reportWinner();
   }
-  game();
+
+document.getElementById("rockBtn").addEventListener("click", function(){
+  playRound("rock", computerSelection);
+  reportWinner();
+});
+document.getElementById("paperBtn").addEventListener("click", function(){
+  playRound("paper", computerSelection);
+  reportWinner();
+});
+document.getElementById("scissorsBtn").addEventListener("click", function(){
+  playRound("scissors", computerSelection);
+  reportWinner();
+});
