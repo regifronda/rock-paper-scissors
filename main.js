@@ -8,6 +8,16 @@ function computerPlay(choices =["rock", "paper", "scissors"]) {
   return randomReturn;
 }
 
+function checkWinner() {
+  if (playerScore === 5) {
+    let resultText = "You win! First to 5 points!";
+    document.getElementById("results").textContent = resultText;
+} else if (computerScore === 5) {
+    let resultText = "Computer wins! First to 5 points!";
+    document.getElementById("results").textContent = resultText;
+  } 
+}
+
 let computerSelection = computerPlay();
 
 function playRound(playerSelection, computerSelection) {
@@ -20,83 +30,73 @@ function playRound(playerSelection, computerSelection) {
     if (computerSelection === "paper") {
       let resultText = "You Lose! " + computerSelection + " beats " + playerSelection;
       computerScore++;
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   } else if (computerSelection === "scissors") {
       let resultText = "You Win! " + playerSelection + " beats " + computerSelection;
       playerScore++;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   } else if (computerSelection === "rock") {
       let resultText = "It's a draw! " + playerSelection + " and " + computerSelection;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   }
-
+    checkWinner();
   } else if (playerSelection.toLowerCase() === "paper") {
     if (computerSelection === "scissors") {
       let resultText = "You Lose! " + computerSelection + " beats " + playerSelection;
       computerScore++;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   } else if (computerSelection === "rock") {
       let resultText = "You Win! " + playerSelection + " beats " + computerSelection;
       playerScore++;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   } else if (computerSelection === "paper") {
       let resultText = "It's a draw! " + playerSelection + " and " + computerSelection;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
     }
-
+    checkWinner();
   } else if (playerSelection.toLowerCase() === "scissors") {
     if (computerSelection === "rock") {
       let resultText = "You Lose! " + computerSelection + " beats " + playerSelection;
       computerScore++;
-      console.log(resultText);
-      document.getElementById("results").innerHtml = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   } else if (computerSelection === "paper") {
       let resultText = "You Win! " + playerSelection + " beats " + computerSelection;
       playerScore++;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
   } else if (computerSelection === "scissors") {
-      let resultText = "it's a draw! " + playerSelection + " and " + computerSelection;
-      console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let resultText = "It's a draw! " + playerSelection + " and " + computerSelection;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
     }
-
+    checkWinner();
   } else {
       let resultText = "Try again!";
       console.log(resultText);
-      document.getElementById("results").textContent = resultText;
+      let scoreText = " Player Score: " + playerScore + " Computer Score: " + computerScore;
+      document.getElementById("results").textContent = resultText + scoreText;
     }
 }
 
-function reportWinner() {
-    if (playerScore > computerScore) {
-      console.log("Player wins!");
-    } else if (computerScore > playerScore) {
-        console.log("Computer wins!");
-    } else {
-      console.log("It's a tie!");
-    }
-  }
-
-  function game() {
-    playRound();
-    reportWinner();
-  }
+function showScore() {
+  let playerRunningScore = document.querySelector("#playerScore");
+  playerRunningScore.textContent = "Player Score: " + playerScore;
+  document.getElementById("computerScore").textContent = "Computer's Score: " + computerScore;
+}
 
 document.getElementById("rockBtn").addEventListener("click", function(e){
   playRound("rock", computerSelection);
-  e.preventDefault();
 });
 document.getElementById("paperBtn").addEventListener("click", function(e){
   playRound("paper", computerSelection);
-  e.preventDefault();
 });
 document.getElementById("scissorsBtn").addEventListener("click", function(e){
   playRound("scissors", computerSelection);
-  e.preventDefault();
 });
