@@ -5,3 +5,4 @@ Learned how to:
 -declare and call functions
 -how to make inputs case insensitive.
 -how to use prompt to get input from the user
+-add an event listener to buttons when clicked
